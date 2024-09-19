@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import { Href, Link, useRouter } from "expo-router";
+import React, { ReactNode, useState } from "react";
 import { Pressable, Text, StyleSheet, View } from "react-native";
 
-const PressableView = ({ title }: { title: string }) => {
+const PressableView = ({
+  link,
+  children,
+  height = "100%",
+  width = "100%",
+}: {
+  link?: Href<string | object>;
+  children: ReactNode;
+  height?: number | string;
+  width?: number | string;
+}) => {
   const [isPressed, setIsPressed] = useState(false);
-
+  const router = useRouter();
+  const handlePress = () => {
+    if (link) {
+      router.push(link); // Navigate to the link if it's provided
+    }
+  };
   return (
     <View className="m-4">
       <Pressable
         onPressIn={() => setIsPressed(true)}
         onPressOut={() => setIsPressed(false)}
+        onPress={handlePress}
         style={[
           styles.pressable,
           {
+            height: height as number | "auto",
+            width: width as number | "auto",
             shadowColor: isPressed ? "#F7D098" : "#000",
             shadowOpacity: isPressed ? 0.85 : 0.5,
             shadowOffset: { width: 0, height: 0 },
@@ -20,9 +39,8 @@ const PressableView = ({ title }: { title: string }) => {
           },
         ]}
         accessibilityRole="button"
-        accessibilityLabel={title}
       >
-        <Text style={styles.text}>{title}</Text>
+        {children}
       </Pressable>
     </View>
   );
@@ -30,17 +48,10 @@ const PressableView = ({ title }: { title: string }) => {
 
 const styles = StyleSheet.create({
   pressable: {
-    height: 148,
-    width: 148,
     borderRadius: 32,
     backgroundColor: "#1B1A1A",
     justifyContent: "center",
     alignItems: "center",
-  },
-  text: {
-    color: "#F7D098",
-    fontSize: 18,
-    fontFamily: "Comfortaa-Medium",
   },
 });
 
