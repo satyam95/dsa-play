@@ -9,7 +9,11 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    "Comfortaa-Bold": require("../assets/fonts/Comfortaa-Bold.ttf"),
+    "Comfortaa-Light": require("../assets/fonts/Comfortaa-Light.ttf"),
+    "Comfortaa-Medium": require("../assets/fonts/Comfortaa-Medium.ttf"),
+    "Comfortaa-Regular": require("../assets/fonts/Comfortaa-Regular.ttf"),
+    "Comfortaa-SemiBold": require("../assets/fonts/Comfortaa-SemiBold.ttf"),
   });
 
   useEffect(() => {
