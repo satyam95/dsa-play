@@ -38,7 +38,7 @@ const Capture = () => {
           </PressableView>
         </View>
         <View className="flex flex-row justify-center">
-          <PressableView height={138} width={305}>
+          <PressableView height={138} width={305} link="/sudokuGrid">
             <View className="flex justify-center flex-row items-center gap-5">
               <Image
                 className="w-11 h-11"
